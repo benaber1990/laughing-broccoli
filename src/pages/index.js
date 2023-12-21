@@ -5,6 +5,16 @@ import { StaticImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import * as styles from "../components/index.module.css"
+import BigButton from "../components/BigButton"
+import COLORS from "../../misc/COLORS"
+import HomeRowB from "../sections/HomeRowB"
+import HomeRowC from "../sections/HomeRowC"
+import HomeRowD from "../sections/HomeRowD"
+import HomeRowE from "../sections/HomeRowE"
+import HomeRowF from "../sections/HomeRowF"
+import HomeMainButton from "../../misc/HomeMainButton"
+import TopNavBar from "../components/TopNavBar"
+import HomeRowC2 from "../sections/HomeRowC2"
 
 const links = [
   {
@@ -72,43 +82,205 @@ const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=de
 const IndexPage = () => (
   <Layout>
     <div className={styles.textCenter}>
-      <StaticImage
-        src="../images/example.png"
+      {/* <StaticImage
+        src="https://i.imgur.com/vIhCAJH.png"
         loading="eager"
-        width={64}
+        width={48}
         quality={95}
         formats={["auto", "webp", "avif"]}
         alt=""
-        style={{ marginBottom: `var(--space-3)` }}
-      />
-      <h1>
-        Welcome to <b>Gatsby!</b>
-      </h1>
-      <p className={styles.intro}>
-        <b>Example pages:</b>{" "}
-        {samplePageLinks.map((link, i) => (
-          <React.Fragment key={link.url}>
-            <Link to={link.url}>{link.text}</Link>
-            {i !== samplePageLinks.length - 1 && <> · </>}
-          </React.Fragment>
-        ))}
-        <br />
-        Edit <code>src/pages/index.js</code> to update this page.
-      </p>
-    </div>
-    <ul className={styles.list}>
-      {links.map(link => (
-        <li key={link.url} className={styles.listItem}>
-          <a
-            className={styles.listItemLink}
-            href={`${link.url}${utmParameters}`}
+        style={{ marginBottom: 0 }}
+      /> */}
+
+      <div
+        style={{
+          // display: "flex",
+          // paddingTop: 120,
+          paddingBottom: 160,
+          alignItems: "center",
+          justifyContent: "center",
+          background: `radial-gradient(circle at 50% 0%, #000 70%, ${COLORS.purple})`,
+        }}
+      >
+        <TopNavBar />
+        <div style={{ height: 100 }} />
+        {/* Col A */}
+        <div style={{}}>
+          <div
+            className={styles.siteheadertext}
+            // style={{
+            //   lineHeight: 1.2,
+            //   fontWeight: "700",
+            //   color: "white",
+            //   textAlign: "center",
+            //   width: "100%",
+            //   marginTop: 120,
+            // }}
           >
-            {link.text} ↗
-          </a>
-          <p className={styles.listItemDescription}>{link.description}</p>
-        </li>
-      ))}
-    </ul>
+            Construction Management
+            <br /> <span style={{ fontWeight: "300" }}>in</span>{" "}
+            <span style={{ color: COLORS.green }}>One Place</span>
+          </div>
+          <div
+            style={{
+              color: "white",
+              textAlign: "center",
+              fontSize: 32,
+              lineHeight: 1.3,
+              fontWeight: "400",
+              marginTop: 10,
+            }}
+          >
+            Get an{" "}
+            <span style={{ fontWeight: "700", color: COLORS.purple }}>
+              AI-Powered
+            </span>{" "}
+            app & dekstop dashboard <br />
+            for everything from conception to completion
+          </div>
+
+          {/* Horizontal Line */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: 60,
+            }}
+          >
+            <div
+              style={{
+                height: 1,
+                width: 1200,
+                background: "white",
+              }}
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <div style={{ color: "white", marginTop: 40, fontSize: 18 }}>
+                Send me my free{" "}
+                <span style={{ color: COLORS.green, fontWeight: "700" }}>
+                  UNIS
+                </span>{" "}
+                info pack:
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: 5,
+                }}
+              >
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  style={{
+                    width: 400,
+                    paddingTop: 15,
+                    paddingBottom: 15,
+                    backgroundColor: "white",
+                    // padding: "10px",
+                    // marginBottom: "10px",
+                    border: "0px solid #ccc",
+                    borderTopLeftRadius: 8,
+                    borderBottomLeftRadius: 8,
+                    boxSizing: "border-box",
+                    paddingLeft: 20,
+                    fontSize: 18,
+                    alignItems: "center",
+                  }}
+                />
+                <button
+                  type="submit"
+                  style={{
+                    width: 150,
+                    color: "white",
+                    fontSize: 18,
+                    fontWeight: "900",
+
+                    // padding: "10px",
+                    border: "0px solid #ccc",
+                    borderTopRightRadius: 8,
+                    borderBottomRightRadius: 8,
+                    backgroundColor: COLORS.purple,
+                    cursor: "pointer",
+                  }}
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+            <HomeMainButton />
+          </div>
+        </div>
+
+        {/* Col B */}
+        <div
+          style={{
+            marginRight: 160,
+            width: "40%",
+            backgroundImage: '"https://i.imgur.com/XPsr0yf.png"',
+          }}
+        >
+          {/* <img
+            src="https://i.imgur.com/XPsr0yf.png"
+            style={{
+              // width: 1200,
+              height: 800,
+              // resize: "contain",
+              objectFit: "cover",
+              marginTop: -30,
+            }}
+          /> */}
+        </div>
+      </div>
+
+      {/* Row B */}
+      <div style={{}}>
+        <HomeRowB />
+      </div>
+
+      {/* Row C2 */}
+      <div>
+        <HomeRowC2 />
+      </div>
+
+      {/* Row C */}
+      <div>
+        <HomeRowC />
+      </div>
+
+      {/* Row D */}
+      <div>
+        <HomeRowD />
+      </div>
+
+      {/* Row E */}
+      <div>
+        <HomeRowE />
+      </div>
+
+      {/* Row F */}
+      <div>
+        <HomeRowF />
+      </div>
+
+      <h2>All your team needs to be connected, compliant & competitive</h2>
+    </div>
     {moreLinks.map((link, i) => (
       <React.Fragment key={link.url}>
         <a href={`${link.url}${utmParameters}`}>{link.text}</a>

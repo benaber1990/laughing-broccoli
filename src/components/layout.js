@@ -10,6 +10,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
+import COLORS from "../../misc/COLORS"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -23,28 +24,35 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
+    <div
+      style={{
+        // marginTop: -40,
+        paddingTop: 0,
+      }}
+    >
+      <main
         style={{
-          margin: `0 auto`,
-          maxWidth: `var(--size-content)`,
-          padding: `var(--size-gutter)`,
+          textAlign: "center",
+          backgroundColor: "#06011f",
+          // paddingTop: 40,
+          // width: "100%",
+
+          // padding: `var(--size-gutter)`,
         }}
       >
-        <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `var(--space-5)`,
-            fontSize: `var(--font-sm)`,
-          }}
-        >
-          © {new Date().getFullYear()} &middot; Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
-    </>
+        {children}
+      </main>
+      <footer
+        style={{
+          marginTop: `var(--space-5)`,
+          fontSize: `var(--font-sm)`,
+        }}
+      >
+        © {new Date().getFullYear()} &middot; Built with
+        {` `}
+        <a href="https://www.gatsbyjs.com">Gatsby</a>
+      </footer>
+    </div>
   )
 }
 

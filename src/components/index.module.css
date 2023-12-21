@@ -52,3 +52,17 @@
   max-width: none;
   line-height: var(--line-height-loose);
 }
+
+.siteheadertext {
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: white; /* Set your default font size for desktop */
+}
+
+/* Media query for smaller devices */
+@media (max-width: 768px) {
+  .siteheadertext {
+    font-size: 42px; /* Set your smaller font size for smaller devices */
+  }
+}

@@ -37,9 +37,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   color: var(--color-text);
-  font-family: sans-serif;
-  font-family: var(--font-sans);
-  font-weight: normal;
+  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
+  /* font-weight: normal, 700, 900; */
   margin: 0;
   word-wrap: break-word;
 }
