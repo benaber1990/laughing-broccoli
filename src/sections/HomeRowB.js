@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import ScrollTrigger from "react-scroll-trigger"
 import COLORS from "../../misc/COLORS"
 import BigButton from "../components/BigButton"
+import * as styles from "../components/index.module.css"
 
 export default function HomeRowB() {
   const [isVisible, setIsVisible] = useState(false)
@@ -18,8 +19,30 @@ export default function HomeRowB() {
     height: "auto", // Maintain aspect ratio
     opacity: isVisible ? 1 : 0,
     transition: "opacity 1s ease-in-out",
-    marginLeft: isVisible ? 0 : "-100px", // Adjust the initial left position
+    marginLeft: isVisible ? 0 : "-100px",
+    // Adjust the initial left position
   }
+
+  //  Check Small Device Screen Size
+  const [isSmallScreen, setIsSmallScreen] = useState(false)
+
+  useEffect(() => {
+    // Function to update isSmallScreen state based on window width
+    const updateWindowDimensions = () => {
+      setIsSmallScreen(window.innerWidth < 768) // You can adjust the threshold (768) based on your design
+    }
+
+    // Event listener to update state when the window is resized
+    window.addEventListener("resize", updateWindowDimensions)
+
+    // Initial call to set the initial state
+    updateWindowDimensions()
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowDimensions)
+    }
+  }, [])
 
   return (
     <div
@@ -31,40 +54,29 @@ export default function HomeRowB() {
         background: `linear-gradient(to bottom, ${COLORS.purple}, ${COLORS.dark})`,
       }}
     >
-      <div style={{ color: "white", fontSize: 48, fontWeight: "700" }}>
-        ACCOMPLISH MORE WITH <span style={{ color: COLORS.green }}>UNIS</span>
+      <div className={styles.rowstitletext}>
+        HANDLE YOUR{" "}
+        <span style={{ color: COLORS.green }}>PROJECTS, TEAMS & DOCS</span> IN
+        ONE PLACE
       </div>
 
-      <div style={{ display: "flex", marginTop: 40, alignItems: "center" }}>
+      <div className={styles.container}>
         {/* Col A */}
         <div
-          style={{
-            width: "40%",
-            justifyContent: "flex-start",
-            paddingLeft: 180,
-          }}
+          style={
+            {
+              // width: "40%",
+              // justifyContent: "flex-start",
+            }
+          }
         >
-          <div
-            style={{
-              color: "white",
-              fontSize: 42,
-              fontWeight: "700",
-              textAlign: "left",
-              lineHeight: 1.2,
-            }}
-          >
+          <div className={styles.rowssubtitle}>
             Communicate, Track & Manage{" "}
             <span style={{ color: COLORS.green }}>Effortlessly</span>
           </div>
+          <div style={{ height: 20 }} />
 
-          <div
-            style={{
-              color: "white",
-              marginTop: 10,
-              textAlign: "left",
-              fontSize: 20,
-            }}
-          >
+          <div className={styles.rowstext}>
             Say goodbye to jumping between programmes and hello to handling your
             construction company from one place. <br />
             <br />
@@ -81,19 +93,20 @@ export default function HomeRowB() {
               paddingTop: 8,
               paddingBottom: 8,
               borderRadius: 40,
-              width: 300,
               marginTop: 20,
               fontWeight: "700",
+              display: "inline-block",
+              float: !isSmallScreen ? "left" : null,
             }}
           >
-            SEE HOW UNIS CAN HELP ME
+            <div>SEE HOW UNIS CAN HELP ME</div>
           </div>
         </div>
 
         {/* Col B */}
         <div style={{}}>
           <ScrollTrigger
-            style={{ marginLeft: 200 }}
+            className={styles.image1}
             onEnter={handleEnterViewport}
           >
             <img src="https://i.imgur.com/BwV3fgr.png" style={imageStyle} />

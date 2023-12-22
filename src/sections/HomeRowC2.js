@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import ScrollTrigger from "react-scroll-trigger"
 import COLORS from "../../misc/COLORS"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -8,10 +8,7 @@ import {
   faLock,
   faBolt,
 } from "@fortawesome/free-solid-svg-icons"
-
-const container = {
-  display: "flex",
-}
+import * as styles from "../components/index.module.css"
 
 const boxComp = {
   marginRight: 20,
@@ -28,6 +25,32 @@ export default function HomeRowC2() {
 
   const handleEnterViewport = () => {
     setIsVisible(true)
+  }
+
+  //  Check Small Device Screen Size
+  const [isSmallScreen, setIsSmallScreen] = useState(false)
+
+  useEffect(() => {
+    // Function to update isSmallScreen state based on window width
+    const updateWindowDimensions = () => {
+      setIsSmallScreen(window.innerWidth < 768) // You can adjust the threshold (768) based on your design
+    }
+
+    // Event listener to update state when the window is resized
+    window.addEventListener("resize", updateWindowDimensions)
+
+    // Initial call to set the initial state
+    updateWindowDimensions()
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowDimensions)
+    }
+  }, [])
+
+  const container = {
+    display: "flex",
+    flexDirection: isSmallScreen ? "column" : "row",
   }
 
   const BoxComp = ({ title, text, iconName }) => (
@@ -66,12 +89,12 @@ export default function HomeRowC2() {
   return (
     <div>
       <div
+        className={styles.rowstitletext}
         style={{
-          color: "white",
-          marginBottom: 30,
-          marginTop: 80,
-          fontSize: 48,
-          fontWeight: "700",
+          marginRight: 20,
+          marginLeft: 20,
+          marginBottom: 20,
+          marginTop: 0,
         }}
       >
         GET A PLATFORM THAT IS{" "}

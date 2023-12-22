@@ -1,5 +1,6 @@
 import React from "react"
 import COLORS from "../../misc/COLORS"
+import { Link } from "gatsby"
 
 const InvestorsButton = ({ title }) => (
   <div
@@ -23,7 +24,9 @@ const InvestorsButton = ({ title }) => (
       paddingBottom: 1,
     }}
   >
-    <div>{title}</div>
+    <Link to="/investors" style={{ textDecoration: "none" }}>
+      <div style={{ color: "white" }}>{title}</div>
+    </Link>
   </div>
 )
 
@@ -48,7 +51,9 @@ const SignInButton = ({ title }) => (
       paddingBottom: 1,
     }}
   >
-    <div>{title}</div>
+    <Link to="/comingsoon" style={{ textDecoration: "none" }}>
+      <div style={{ color: "white" }}>{title}</div>
+    </Link>
   </div>
 )
 
@@ -72,7 +77,9 @@ const SignUpButton = ({ title }) => (
       paddingBottom: 1,
     }}
   >
-    <div>{title}</div>
+    <Link to="/comingsoon" style={{ textDecoration: "none" }}>
+      <div style={{ color: "white" }}>{title}</div>
+    </Link>
   </div>
 )
 
@@ -96,13 +103,34 @@ export default function TopNavBar() {
       >
         <img src="https://i.imgur.com/vIhCAJH.png" style={{ width: 50 }} />
         <div style={{ paddingBottom: 30, display: "flex" }}>
-          <div style={{ marginLeft: 30, fontSize: 18, fontWeight: "700" }}>
-            Home
-          </div>
-          <div style={{ marginLeft: 20, fontSize: 18 }}>Features</div>
-          <div style={{ marginLeft: 20, fontSize: 18 }}>Pricing</div>
-          <div style={{ marginLeft: 20, fontSize: 18 }}>App</div>
-          <div style={{ marginLeft: 20, fontSize: 18 }}>Contact</div>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <div style={{ marginLeft: 20, fontSize: 18, color: "white" }}>
+              Home
+            </div>
+          </Link>
+          <Link to="/comingsoon" style={{ textDecoration: "none" }}>
+            <div style={{ marginLeft: 20, fontSize: 18, color: "white" }}>
+              Features
+            </div>
+          </Link>
+
+          <Link to="/comingsoon" style={{ textDecoration: "none" }}>
+            <div style={{ marginLeft: 20, fontSize: 18, color: "white" }}>
+              Pricing
+            </div>
+          </Link>
+
+          <Link to="/comingsoon" style={{ textDecoration: "none" }}>
+            <div style={{ marginLeft: 20, fontSize: 18, color: "white" }}>
+              App
+            </div>
+          </Link>
+
+          <Link to="/comingsoon" style={{ textDecoration: "none" }}>
+            <div style={{ marginLeft: 20, fontSize: 18, color: "white" }}>
+              Contact
+            </div>
+          </Link>
         </div>
       </div>
       <div

@@ -34,6 +34,7 @@ const Layout = ({ children }) => {
         style={{
           textAlign: "center",
           backgroundColor: "#06011f",
+          paddingBottom: 40,
           // paddingTop: 40,
           // width: "100%",
 
@@ -46,11 +47,12 @@ const Layout = ({ children }) => {
         style={{
           marginTop: `var(--space-5)`,
           fontSize: `var(--font-sm)`,
+          margin: 20,
         }}
       >
-        © {new Date().getFullYear()} &middot; Built with
+        © {new Date().getFullYear()} &middot;
         {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
+        <a href="https://www.unis.one">Built by UNIS</a>
       </footer>
     </div>
   )

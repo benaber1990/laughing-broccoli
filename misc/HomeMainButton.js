@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from "gatsby"
 
 const COLORS = {
   green: "#47d792", // Replace with your actual green color value
@@ -33,14 +34,22 @@ const HomeMainButton = () => {
 
   return (
     <div>
-      <div
-        style={buttonStyle}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={hasClickedHandler}
+      <Link
+        to="/comingsoon"
+        style={{
+          textDecoration: "none",
+          color: COLORS.green,
+        }}
       >
-        Start Free Trial
-      </div>
+        <div
+          style={buttonStyle}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onClick={hasClickedHandler}
+        >
+          Start Free Trial
+        </div>
+      </Link>
     </div>
   )
 }
