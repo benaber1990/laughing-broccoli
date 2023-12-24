@@ -71,7 +71,9 @@ export default function Investors() {
           paddingBottom: 420,
         }}
       >
-        {!isSmallScreen ? <TopNavBar /> : null}
+        <div className={styles.hiddenonsmall}>
+          <TopNavBar />
+        </div>
 
         {isSmallScreen ? <MobileTopBar onClick={mobMenuHandler} /> : null}
         <div className={styles.herocontainer} />

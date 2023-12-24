@@ -56,7 +56,9 @@ export default function ComingSoon() {
           paddingBottom: 420,
         }}
       >
-        {!isSmallScreen ? <TopNavBar /> : null}
+        <div className={styles.hiddenonsmall}>
+          <TopNavBar />
+        </div>
 
         {isSmallScreen ? <MobileTopBar onClick={mobMenuHandler} /> : null}
         <div className={styles.herocontainer} />
