@@ -1,9 +1,9 @@
+// index.js or App.js
+
 import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import styled, { keyframes } from "styled-components"
-import { firestore, auth } from "../firebase"
-
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import * as styles from "../components/index.module.css"
@@ -19,6 +19,9 @@ import TopNavBar from "../components/TopNavBar"
 import HomeRowC2 from "../sections/HomeRowC2"
 import MobileTopBar from "../components/MobileTopBar"
 import MobileMenu from "../components/MobileMenu"
+
+// import dotenv from "dotenv"
+// dotenv.config()
 
 const links = [
   {
@@ -149,13 +152,9 @@ const IndexPage = () => {
   // Email Form
   const [email, setEmail] = useState("")
 
-  const messagesRef = firestore.collection("websiteemails")
-
   async function sendNote(e) {
     e.preventDefault()
-    await messagesRef.doc().set({
-      email: email,
-    })
+
     alert("Thank you for your interest in UNIS. Look out for your first email")
     setEmail("")
     // alert("Note successfully sent!")

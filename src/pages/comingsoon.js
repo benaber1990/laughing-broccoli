@@ -6,7 +6,6 @@ import TopNavBar from "../components/TopNavBar"
 import Checkbox from "../components/Checkbox"
 import MobileMenu from "../components/MobileMenu"
 import MobileTopBar from "../components/MobileTopBar"
-import { firestore, auth } from "../firebase"
 
 export default function ComingSoon() {
   const [isTermsChecked, setTermsChecked] = useState(false)
@@ -42,13 +41,7 @@ export default function ComingSoon() {
   // Email Form
   const [email, setEmail] = useState("")
 
-  const messagesRef = firestore.collection("websiteemails")
-
   async function sendNote(e) {
-    e.preventDefault()
-    await messagesRef.doc().set({
-      email: email,
-    })
     alert("Thank you for your interest in UNIS. Look out for your first email")
     setEmail("")
     // alert("Note successfully sent!")

@@ -6,7 +6,6 @@ import COLORS from "../../misc/COLORS"
 import Checkbox from "../components/Checkbox"
 import MobileMenu from "../components/MobileMenu"
 import MobileTopBar from "../components/MobileTopBar"
-import { firestore, auth } from "../firebase"
 
 export default function Investors() {
   const [isTermsChecked, setTermsChecked] = useState(false)
@@ -42,16 +41,25 @@ export default function Investors() {
   // Email Form
   const [email, setEmail] = useState("")
 
-  const messagesRef = firestore.collection("investoremails")
-
   async function sendNote(e) {
     e.preventDefault()
-    await messagesRef.doc().set({
-      email: email,
-    })
-    alert("Thank you for your interest in UNIS. Look out for your first email")
-    setEmail("")
-    // alert("Note successfully sent!")
+    console.log("Clicked")
+
+    try {
+      // Attempt to set the document in Firestore
+
+      console.log("Success")
+      // If successful, show an alert and clear the email state
+      alert(
+        "Thank you for your interest in UNIS. Look out for your first email"
+      )
+      setEmail("")
+    } catch (error) {
+      // If an error occurs, log it to the console
+      console.error("Error sending note:", error)
+      // Optionally, you can also show an alert to the user indicating the error
+      alert("An error occurred. Please try again later.")
+    }
   }
 
   return (
