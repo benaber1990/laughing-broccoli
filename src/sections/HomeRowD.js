@@ -3,6 +3,7 @@ import ScrollTrigger from "react-scroll-trigger"
 import COLORS from "../../misc/COLORS"
 import BigButton from "../components/BigButton"
 import * as styles from "../components/index.module.css"
+import { Link } from "gatsby"
 
 export default function HomeRowD() {
   const [isVisible, setIsVisible] = useState(false)
@@ -35,8 +36,8 @@ export default function HomeRowD() {
   const imageStyle = {
     borderRadius: 30,
     border: `2px solid ${COLORS.green}`,
-    marginLeft: isSmallScreen ? null : 120,
-    width: isSmallScreen ? 400 : 600,
+    marginLeft: isSmallScreen ? 20 : 120,
+    width: isSmallScreen ? 0 : 600,
     // width: 120,
     height: "auto", // Maintain aspect ratio
     opacity: isVisible ? 1 : 0,
@@ -75,7 +76,7 @@ export default function HomeRowD() {
           style={{
             width: isSmallScreen ? null : "40%",
             justifyContent: "flex-start",
-            paddingLeft: isSmallScreen ? 20 : 180,
+            paddingLeft: isSmallScreen ? null : 180,
           }}
         >
           <div
@@ -114,7 +115,17 @@ export default function HomeRowD() {
               float: !isSmallScreen ? "left" : null,
             }}
           >
-            SEE HOW UNIS CAN HELP ME
+            <Link
+              style={{
+                textDecoration: "none",
+                paddingLeft: 10,
+                paddingRight: 10,
+                color: "white",
+                fontWeight: "700",
+              }}
+            >
+              DISCOVER ALL FEATURES
+            </Link>
           </div>
         </div>
 

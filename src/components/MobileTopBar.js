@@ -1,5 +1,6 @@
 import React from "react"
 import COLORS from "../../misc/COLORS"
+import { Link } from "gatsby"
 
 export default function MobileTopBar({ onClick }) {
   const container = {
@@ -15,9 +16,11 @@ export default function MobileTopBar({ onClick }) {
 
   return (
     <div style={container}>
-      <img src="https://i.imgur.com/vIhCAJH.png" style={{ width: 40 }} />
+      <Link to="/" style={{ cursor: "pointer" }}>
+        <img src="https://i.imgur.com/vIhCAJH.png" style={{ width: 40 }} />
+      </Link>
       <div></div>
-      <div style={{ paddingTop: 10 }} onClick={onClick}>
+      <div style={{ paddingTop: 10, cursor: "pointer" }} onClick={onClick}>
         Menu
       </div>
     </div>

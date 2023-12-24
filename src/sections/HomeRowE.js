@@ -1,7 +1,29 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import COLORS from "../../misc/COLORS"
+import { Link } from "gatsby"
 
 export default function HomeRowE() {
+  //  Check Small Device Screen Size
+  const [isSmallScreen, setIsSmallScreen] = useState(false)
+
+  useEffect(() => {
+    // Function to update isSmallScreen state based on window width
+    const updateWindowDimensions = () => {
+      setIsSmallScreen(window.innerWidth < 768) // You can adjust the threshold (768) based on your design
+    }
+
+    // Event listener to update state when the window is resized
+    window.addEventListener("resize", updateWindowDimensions)
+
+    // Initial call to set the initial state
+    updateWindowDimensions()
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowDimensions)
+    }
+  }, [])
+
   return (
     <div
       style={{
@@ -14,9 +36,11 @@ export default function HomeRowE() {
       <div
         style={{
           color: "white",
-          fontSize: 48,
+          fontSize: isSmallScreen ? 42 : 48,
           fontWeight: "700",
           lineHeight: 1.1,
+          paddingRight: 10,
+          paddingLeft: 10,
         }}
       >
         ONE PLACE TO MANAGE
@@ -46,9 +70,18 @@ export default function HomeRowE() {
           alignSelf: "center",
         }}
       >
-        <div style={{ paddingLeft: 30, paddingRight: 30 }}>
-          SEE HOW UNIS CAN HELP ME
-        </div>
+        <Link
+          to="/comingsoon"
+          style={{
+            textDecoration: "none",
+            color: "white",
+            fontWeight: "700",
+          }}
+        >
+          <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+            UNLOCK THE POWER OF UNIS
+          </div>
+        </Link>
       </div>
     </div>
   )

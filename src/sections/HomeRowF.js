@@ -29,6 +29,9 @@ export default function HomeRowF() {
       <div
         style={{
           display: "flex",
+          justifyContent: "flex-start",
+          // flexDirection: "column",
+          marginTop: 120,
         }}
       >
         {/* Col A */}
@@ -44,7 +47,10 @@ export default function HomeRowF() {
         >
           <div
             className={styles.rowstitletext}
-            style={{ textAlign: isSmallScreen ? "center" : "left" }}
+            style={{
+              fontSize: isSmallScreen ? 36 : null,
+              textAlign: isSmallScreen ? "center" : "left",
+            }}
           >
             Unlock the power of{" "}
             <span style={{ color: COLORS.green }}>UNIS</span> today & organise
@@ -62,20 +68,28 @@ export default function HomeRowF() {
           </div>
           <div
             style={{
-              backgroundColor: COLORS.purple,
-              color: "white",
-              paddingLeft: 15,
-              paddingRight: 15,
-              paddingTop: 8,
-              paddingBottom: 8,
-              borderRadius: 40,
-              marginTop: 20,
-              fontWeight: "700",
-              display: "inline-block",
-              float: !isSmallScreen ? "left" : "center",
+              display: "flex",
+              justifyContent: isSmallScreen ? "center" : "flex-start",
             }}
           >
-            <div>SEE HOW UNIS CAN HELP ME</div>
+            <div
+              style={{
+                backgroundColor: COLORS.purple,
+                color: "white",
+                paddingLeft: 15,
+                paddingRight: 15,
+                paddingTop: 8,
+                paddingBottom: 8,
+                borderRadius: 40,
+                marginTop: 20,
+                fontWeight: "700",
+                display: "inline-block",
+                width: "auto",
+                // float: !isSmallScreen ? "left" : null,
+              }}
+            >
+              SEE HOW UNIS CAN HELP ME
+            </div>
           </div>
         </div>
 

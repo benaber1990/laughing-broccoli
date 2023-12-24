@@ -3,6 +3,7 @@ import ScrollTrigger from "react-scroll-trigger"
 import COLORS from "../../misc/COLORS"
 import BigButton from "../components/BigButton"
 import * as styles from "../components/index.module.css"
+import { Link } from "gatsby"
 
 export default function HomeRowB() {
   const [isVisible, setIsVisible] = useState(false)
@@ -51,6 +52,7 @@ export default function HomeRowB() {
         paddingBottom: 40,
         alignItems: "center",
         justifyContent: "center",
+        borderTop: isSmallScreen ? "1px solid black" : null,
         background: `linear-gradient(to bottom, ${COLORS.purple}, ${COLORS.dark})`,
       }}
     >
@@ -97,9 +99,21 @@ export default function HomeRowB() {
               fontWeight: "700",
               display: "inline-block",
               float: !isSmallScreen ? "left" : null,
+              cursor: "pointer",
             }}
           >
-            <div>SEE HOW UNIS CAN HELP ME</div>
+            <Link
+              to="/comingsoon"
+              style={{
+                textDecoration: "none",
+                color: "white",
+                fontWeight: 700,
+              }}
+            >
+              <div style={{ paddingLeft: 10, paddingRight: 10 }}>
+                SEE HOW UNIS CAN HELP ME
+              </div>
+            </Link>
           </div>
         </div>
 

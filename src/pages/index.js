@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import styled, { keyframes } from "styled-components"
+import { firestore, auth } from "../firebase"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -17,6 +18,7 @@ import HomeMainButton from "../../misc/HomeMainButton"
 import TopNavBar from "../components/TopNavBar"
 import HomeRowC2 from "../sections/HomeRowC2"
 import MobileTopBar from "../components/MobileTopBar"
+import MobileMenu from "../components/MobileMenu"
 
 const links = [
   {
@@ -82,6 +84,8 @@ const moreLinks = [
 const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=default-starter`
 
 const IndexPage = () => {
+  const [mobMenu, setMobMenu] = useState(false)
+
   // Define the keyframes for the color animation
   // Define the keyframes for the color animation
   const colorAnimation = keyframes`
@@ -138,6 +142,25 @@ const IndexPage = () => {
     }
   }, [])
 
+  //  Mobile Menu Handler
+
+  const mobMenuHandler = () => setMobMenu(p => !p)
+
+  // Email Form
+  const [email, setEmail] = useState("")
+
+  const messagesRef = firestore.collection("websiteemails")
+
+  async function sendNote(e) {
+    e.preventDefault()
+    await messagesRef.doc().set({
+      email: email,
+    })
+    alert("Thank you for your interest in UNIS. Look out for your first email")
+    setEmail("")
+    // alert("Note successfully sent!")
+  }
+
   return (
     <Layout>
       <div className={styles.textCenter}>
@@ -160,8 +183,11 @@ const IndexPage = () => {
             <TopNavBar />
           </div>
 
-          {isSmallScreen ? <MobileTopBar /> : null}
+          {isSmallScreen ? <MobileTopBar onClick={mobMenuHandler} /> : null}
           <div className={styles.herocontainer} />
+
+          {mobMenu ? <MobileMenu onClick={mobMenuHandler} /> : null}
+
           {/* Col A */}
           <div style={{}}>
             <div
@@ -239,14 +265,18 @@ const IndexPage = () => {
                     marginTop: 5,
                   }}
                 >
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className={styles.emailinput}
-                  />
-                  <button type="submit" className={styles.emailsubmit}>
-                    Submit
-                  </button>
+                  <form onSubmit={sendNote}>
+                    <input
+                      type="email"
+                      placeholder="Enter your email"
+                      className={styles.emailinput}
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                    />
+                    <button type="submit" className={styles.emailsubmit}>
+                      Submit
+                    </button>
+                  </form>
                 </div>
               </div>
               <HomeMainButton />
@@ -305,7 +335,9 @@ const IndexPage = () => {
           <HomeRowF />
         </div>
 
-        <h2>All your team needs to be connected, compliant & competitive</h2>
+        <h2 style={{ color: "lightgrey" }}>
+          All your team needs to be connected, compliant & competitive
+        </h2>
       </div>
       {moreLinks.map((link, i) => (
         <React.Fragment key={link.url}></React.Fragment>

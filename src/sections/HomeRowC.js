@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import ScrollTrigger from "react-scroll-trigger"
 import COLORS from "../../misc/COLORS"
 import * as styles from "../components/index.module.css"
+import { Link } from "gatsby"
 
 export default function HomeRowC() {
   const [isVisible, setIsVisible] = useState(false)
@@ -106,9 +107,26 @@ export default function HomeRowC() {
               fontWeight: "700",
               display: "inline-block",
               float: !isSmallScreen ? "left" : null,
+              cursor: "pointer",
             }}
           >
-            <div>SEE HOW UNIS CAN HELP ME!!</div>
+            <Link
+              to="/comingsoon"
+              style={{
+                textDecoration: "none",
+                color: "white",
+                fontWeight: "700",
+              }}
+            >
+              <div
+                style={{
+                  paddingLeft: 10,
+                  paddingRight: 10,
+                }}
+              >
+                FIND OUT MORE
+              </div>
+            </Link>
           </div>
         </div>
       </div>

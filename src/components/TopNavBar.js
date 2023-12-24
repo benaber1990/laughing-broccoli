@@ -101,7 +101,9 @@ export default function TopNavBar() {
           alignItems: "center",
         }}
       >
-        <img src="https://i.imgur.com/vIhCAJH.png" style={{ width: 50 }} />
+        <Link to="/">
+          <img src="https://i.imgur.com/vIhCAJH.png" style={{ width: 50 }} />
+        </Link>
         <div style={{ paddingBottom: 30, display: "flex" }}>
           <Link to="/" style={{ textDecoration: "none" }}>
             <div style={{ marginLeft: 20, fontSize: 18, color: "white" }}>
