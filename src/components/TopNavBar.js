@@ -2,88 +2,79 @@ import React from "react"
 import COLORS from "../../misc/COLORS"
 import { Link } from "gatsby"
 
-const InvestorsButton = ({ title }) => (
-  <div
-    style={{
-      //   background: `linear-gradient(to right, black, orange`,
-      //   backgroundColor: "red",
-      //   paddingTop: 8,
-      //   paddingBottom: 8,
-      paddingLeft: 12,
-      paddingRight: 12,
-      borderRadius: 40,
-      width: 100,
-      border: "2px solid",
-      marginRight: 20,
-      cursor: "pointer",
-      maxHeight: 45,
-      alignItems: "center",
-      display: "flex",
-      textAlign: "center",
-      justifyContent: "center",
-      paddingBottom: 1,
-    }}
-  >
-    <Link to="/investors" style={{ textDecoration: "none" }}>
-      <div style={{ color: "white" }}>{title}</div>
-    </Link>
-  </div>
-)
-
-const SignInButton = ({ title }) => (
-  <div
-    style={{
-      //   backgroundColor: "red",
-      //   paddingTop: 8,
-      //   paddingBottom: 8,
-      paddingLeft: 12,
-      paddingRight: 12,
-      borderRadius: 40,
-      width: 100,
-      border: "2px solid",
-      marginRight: 20,
-      cursor: "pointer",
-      maxHeight: 45,
-      alignItems: "center",
-      display: "flex",
-      textAlign: "center",
-      justifyContent: "center",
-      paddingBottom: 1,
-    }}
-  >
-    <Link to="/comingsoon" style={{ textDecoration: "none" }}>
-      <div style={{ color: "white" }}>{title}</div>
-    </Link>
-  </div>
-)
-
-const SignUpButton = ({ title }) => (
-  <div
-    style={{
-      background: `linear-gradient(to right, ${COLORS.purple}, ${COLORS.green})`,
-      //   paddingTop: 8,
-      //   paddingBottom: 8,
-      paddingLeft: 12,
-      paddingRight: 12,
-      borderRadius: 40,
-      width: 100,
-      border: "2px solid",
-      cursor: "pointer",
-      maxHeight: 45,
-      alignItems: "center",
-      display: "flex",
-      textAlign: "center",
-      justifyContent: "center",
-      paddingBottom: 1,
-    }}
-  >
-    <Link to="/comingsoon" style={{ textDecoration: "none" }}>
-      <div style={{ color: "white" }}>{title}</div>
-    </Link>
-  </div>
-)
-
 export default function TopNavBar() {
+  const InvestorsButton = ({ title }) => (
+    <div
+      style={{
+        paddingLeft: 12,
+        paddingRight: 12,
+        borderRadius: 40,
+        width: 100,
+        border: "2px solid",
+        marginRight: 20,
+        cursor: "pointer",
+        maxHeight: 45,
+        alignItems: "center",
+        display: "flex",
+        textAlign: "center",
+        justifyContent: "center",
+        paddingBottom: 1,
+      }}
+    >
+      <Link to="/investors" style={{ textDecoration: "none" }}>
+        <div style={{ color: "white" }}>{title}</div>
+      </Link>
+    </div>
+  )
+
+  const SignInButton = ({ title }) => (
+    <div
+      style={{
+        paddingLeft: 12,
+        paddingRight: 12,
+        borderRadius: 40,
+        width: 100,
+        border: "2px solid",
+        marginRight: 20,
+        cursor: "pointer",
+        maxHeight: 45,
+        alignItems: "center",
+        display: "flex",
+        textAlign: "center",
+        justifyContent: "center",
+        paddingBottom: 1,
+      }}
+    >
+      <Link to="/comingsoon" style={{ textDecoration: "none" }}>
+        <div style={{ color: "white" }}>{title}</div>
+      </Link>
+    </div>
+  )
+
+  const SignUpButton = ({ title }) => (
+    <div
+      style={{
+        background: `linear-gradient(to right, ${COLORS.purple}, ${COLORS.green})`,
+        paddingLeft: 12,
+        paddingRight: 12,
+        borderRadius: 40,
+        width: 100,
+        border: "2px solid",
+        cursor: "pointer",
+        maxHeight: 45,
+        alignItems: "center",
+        display: "flex",
+        textAlign: "center",
+        justifyContent: "center",
+        paddingBottom: 1,
+      }}
+    >
+      <Link to="/comingsoon" style={{ textDecoration: "none" }}>
+        <div style={{ color: "white" }}>{title}</div>
+      </Link>
+    </div>
+  )
+
   return (
     <div
       style={{

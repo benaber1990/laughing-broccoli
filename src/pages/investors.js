@@ -46,23 +46,6 @@ export default function Investors() {
   // Email Form
   const [email, setEmail] = useState("")
 
-  // const handleSubmit = async e => {
-  //   e.preventDefault()
-
-  //   // Add the email to Firestore
-  //   try {
-  //     await db.collection("investoremails").doc().set({
-  //       email,
-  //     })
-  //     console.log("Email added to Firestore!")
-  //   } catch (error) {
-  //     console.error("Error adding email to Firestore: ", error)
-  //   }
-
-  //   // Clear the input field
-  //   setEmail("")
-  // }
-
   // Handle Submit
   const messagesRef = firestore.collection("investorsemails")
   const handleSubmit = async e => {

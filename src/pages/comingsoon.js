@@ -8,6 +8,8 @@ import MobileMenu from "../components/MobileMenu"
 import MobileTopBar from "../components/MobileTopBar"
 import ReCAPTCHA from "react-google-recaptcha"
 import { firestore, auth } from "../../firebase.config"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons"
 
 export default function ComingSoon() {
   const [isTermsChecked, setTermsChecked] = useState(false)
@@ -232,6 +234,42 @@ export default function ComingSoon() {
               </div>
             ) : null}
           </div>
+        </div>
+
+        {/* Contact informatiomn */}
+        <div
+          style={{
+            color: "white",
+            marginTop: 40,
+            fontSize: 24,
+            fontWeight: "700",
+          }}
+        >
+          {" "}
+          <FontAwesomeIcon
+            icon={faPhone}
+            size="1x"
+            color={COLORS.green}
+            style={{ alignSelf: "flex-end", marginRight: 10 }}
+          />
+          0345 548 1911
+        </div>
+        <div
+          style={{
+            color: "white",
+            marginTop: 20,
+            fontSize: 24,
+            fontWeight: "700",
+          }}
+        >
+          {" "}
+          <FontAwesomeIcon
+            icon={faEnvelope}
+            size="1x"
+            color={COLORS.green}
+            style={{ alignSelf: "flex-end", marginRight: 10 }}
+          />
+          enquiries@unis.one
         </div>
       </div>
     </Layout>
