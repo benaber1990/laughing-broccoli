@@ -24,6 +24,7 @@ export default function Investors() {
   const [isSmallScreen, setIsSmallScreen] = useState(false)
 
   useEffect(() => {
+    if (typeof window === "undefined") return
     // Function to update isSmallScreen state based on window width
     const updateWindowDimensions = () => {
       setIsSmallScreen(window.innerWidth < 768) // You can adjust the threshold (768) based on your design

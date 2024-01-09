@@ -28,7 +28,8 @@ export default function HomeRowB() {
   }
 
   useEffect(() => {
-    // Function to update isSmallScreen state based on window width
+    // Function to update isSmallScreen state based on window width\
+    if (typeof window === "undefined") return
     const updateWindowDimensions = () => {
       setIsSmallScreen(window.innerWidth < 768) // You can adjust the threshold (768) based on your design
     }
