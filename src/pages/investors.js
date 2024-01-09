@@ -208,7 +208,7 @@ export default function Investors() {
                 {recaptchaVisible ? (
                   <div>
                     <ReCAPTCHA
-                      sitekey="6Lfl_EkpAAAAAEsRUaN1Ho5vTjypUgcrORPXiJGs"
+                      sitekey="6Ld2K0spAAAAAG95-xc_a1UjkHa5ute-Qshcq-Oa"
                       onChange={value => setRecaptchaValue(value)}
                     />
                     <Checkbox onCheck={handleTermsCheckboxChange} />

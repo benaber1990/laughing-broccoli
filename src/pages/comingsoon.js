@@ -205,7 +205,7 @@ export default function ComingSoon() {
             {recaptchaVisible ? (
               <div>
                 <ReCAPTCHA
-                  sitekey="6Lfl_EkpAAAAAEsRUaN1Ho5vTjypUgcrORPXiJGs" // Replace with your actual reCAPTCHA site key
+                  sitekey="6Ld2K0spAAAAAG95-xc_a1UjkHa5ute-Qshcq-Oa" // Replace with your actual reCAPTCHA site key
                   onChange={value => setRecaptchaValue(value)}
                 />
                 <Checkbox onCheck={handleTermsCheckboxChange} />

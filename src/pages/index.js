@@ -291,7 +291,7 @@ const IndexPage = () => {
                 </div>
                 {recaptchaVisible ? (
                   <ReCAPTCHA
-                    sitekey="6Lfl_EkpAAAAAEsRUaN1Ho5vTjypUgcrORPXiJGs" // Replace with your actual reCAPTCHA site key
+                    sitekey="6Ld2K0spAAAAAG95-xc_a1UjkHa5ute-Qshcq-Oa" // Replace with your actual reCAPTCHA site key
                     onChange={value => setRecaptchaValue(value)}
                   />
                 ) : null}
