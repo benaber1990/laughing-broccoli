@@ -6,10 +6,15 @@ import TopNavBar from "../components/TopNavBar"
 import Checkbox from "../components/Checkbox"
 import MobileMenu from "../components/MobileMenu"
 import MobileTopBar from "../components/MobileTopBar"
+import ReCAPTCHA from "react-google-recaptcha"
+import { firestore, auth } from "../../firebase.config"
 
 export default function ComingSoon() {
   const [isTermsChecked, setTermsChecked] = useState(false)
   const [mobMenu, setMobMenu] = useState(false)
+  const [recaptchaValue, setRecaptchaValue] = useState("")
+  const [recaptchaVisible, setRecaptchaVisible] = useState(false)
+  const [thankYou, setThankYou] = useState(false)
 
   const handleTermsCheckboxChange = isChecked => {
     setTermsChecked(isChecked)
@@ -27,7 +32,7 @@ export default function ComingSoon() {
     // Event listener to update state when the window is resized
     window.addEventListener("resize", updateWindowDimensions)
 
-    // Initial call to set the initial state
+    // Initial call to set the initial stateg
     updateWindowDimensions()
 
     // Cleanup the event listener on component unmount
@@ -41,10 +46,39 @@ export default function ComingSoon() {
   // Email Form
   const [email, setEmail] = useState("")
 
-  async function sendNote(e) {
-    alert("Thank you for your interest in UNIS. Look out for your first email")
-    setEmail("")
-    // alert("Note successfully sent!")
+  // Handle Submit
+  const messagesRef = firestore.collection("marketingemails")
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+
+    if (!recaptchaValue) {
+      alert("Please check terms and complete reCAPTCHA before submitting.")
+      return
+    }
+
+    try {
+      await messagesRef.doc().set({
+        email,
+        recaptcha: recaptchaValue,
+        hello: "Hello",
+      })
+
+      alert("Email successfully submitted!")
+      setEmail("")
+      setRecaptchaValue("")
+      setRecaptchaVisible(false)
+      setThankYou(true)
+    } catch (error) {
+      console.error("Error adding email and reCAPTCHA to Firestore: ", error)
+      alert("Error submitting email. Please try again.")
+    }
+  }
+
+  // Handle Email Focus
+  const handleEmailFocus = () => {
+    // Show the reCAPTCHA when the user starts typing their email
+    setRecaptchaVisible(true)
   }
 
   return (
@@ -156,7 +190,7 @@ export default function ComingSoon() {
           enter your email
         </div>
         <form
-          onSubmit={sendNote}
+          onSubmit={handleSubmit}
           style={{
             display: "flex",
             justifyContent: "center",
@@ -169,13 +203,35 @@ export default function ComingSoon() {
             className={styles.emailinput}
             value={email}
             onChange={e => setEmail(e.target.value)}
+            onFocus={handleEmailFocus}
           />
           <button type="submit" className={styles.emailsubmit}>
             Submit
           </button>
         </form>
         <div style={{ marginTop: 10 }}>
-          <Checkbox onCheck={handleTermsCheckboxChange} />
+          <div
+            style={{
+              alignItems: "center",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {recaptchaVisible ? (
+              <div>
+                <ReCAPTCHA
+                  sitekey="6Lfl_EkpAAAAAEsRUaN1Ho5vTjypUgcrORPXiJGs" // Replace with your actual reCAPTCHA site key
+                  onChange={value => setRecaptchaValue(value)}
+                />
+                <Checkbox onCheck={handleTermsCheckboxChange} />
+              </div>
+            ) : null}
+            {thankYou ? (
+              <div style={{ color: COLORS.green }}>
+                Thank you - please look out for your email!
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
     </Layout>

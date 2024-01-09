@@ -67,7 +67,7 @@ export default function HomeRowC() {
             style={{ borderRadius: 30 }}
             onEnter={handleEnterViewport}
           >
-            <img src="https://i.imgur.com/dQYsrqC.png" style={imageStyle} />
+            <img src="https://i.imgur.com/s8ictbb.jpg" style={imageStyle} />
           </ScrollTrigger>
         </div>
         {/* Col B */}

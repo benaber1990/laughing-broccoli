@@ -19,6 +19,9 @@ import TopNavBar from "../components/TopNavBar"
 import HomeRowC2 from "../sections/HomeRowC2"
 import MobileTopBar from "../components/MobileTopBar"
 import MobileMenu from "../components/MobileMenu"
+import { db } from "../../firebase.config"
+import ReCAPTCHA from "react-google-recaptcha"
+import { firestore, auth } from "../../firebase.config"
 
 // import dotenv from "dotenv"
 // dotenv.config()
@@ -87,7 +90,11 @@ const moreLinks = [
 const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=default-starter`
 
 const IndexPage = () => {
+  const [isTermsChecked, setTermsChecked] = useState(false)
   const [mobMenu, setMobMenu] = useState(false)
+  const [recaptchaValue, setRecaptchaValue] = useState("")
+  const [recaptchaVisible, setRecaptchaVisible] = useState(false)
+  const [thankYou, setThankYou] = useState(false)
 
   // Define the keyframes for the color animation
   // Define the keyframes for the color animation
@@ -152,12 +159,40 @@ const IndexPage = () => {
   // Email Form
   const [email, setEmail] = useState("")
 
-  async function sendNote(e) {
+  // Send Note
+  const messagesRef = firestore.collection("marketingemails")
+
+  // Handle Submit
+  const handleSubmit = async e => {
     e.preventDefault()
 
-    alert("Thank you for your interest in UNIS. Look out for your first email")
-    setEmail("")
-    // alert("Note successfully sent!")
+    if (!recaptchaValue) {
+      alert("Please check terms and complete reCAPTCHA before submitting.")
+      return
+    }
+
+    try {
+      await messagesRef.doc().set({
+        email,
+        recaptcha: recaptchaValue,
+        hello: "Hello",
+      })
+
+      alert("Email successfully submitted!")
+      setEmail("")
+      setRecaptchaValue("")
+      setRecaptchaVisible(false)
+      setThankYou(true)
+    } catch (error) {
+      console.error("Error adding email and reCAPTCHA to Firestore: ", error)
+      alert("Error submitting email. Please try again.")
+    }
+  }
+
+  // Handle Email Focus
+  const handleEmailFocus = () => {
+    // Show the reCAPTCHA when the user starts typing their email
+    setRecaptchaVisible(true)
   }
 
   return (
@@ -264,19 +299,31 @@ const IndexPage = () => {
                     marginTop: 5,
                   }}
                 >
-                  <form onSubmit={sendNote}>
+                  <form onSubmit={handleSubmit}>
                     <input
                       type="email"
                       placeholder="Enter your email"
                       className={styles.emailinput}
                       value={email}
                       onChange={e => setEmail(e.target.value)}
+                      onFocus={handleEmailFocus}
                     />
                     <button type="submit" className={styles.emailsubmit}>
                       Submit
                     </button>
                   </form>
                 </div>
+                {recaptchaVisible ? (
+                  <ReCAPTCHA
+                    sitekey="6Lfl_EkpAAAAAEsRUaN1Ho5vTjypUgcrORPXiJGs" // Replace with your actual reCAPTCHA site key
+                    onChange={value => setRecaptchaValue(value)}
+                  />
+                ) : null}
+                {thankYou ? (
+                  <div style={{ color: COLORS.green }}>
+                    Thank you - please look out for your email!
+                  </div>
+                ) : null}
               </div>
               <HomeMainButton />
               <div style={{ height: isSmallScreen ? 100 : 200 }} />

@@ -35,11 +35,12 @@ export default function HomeRowD() {
 
   const imageStyle = {
     borderRadius: 30,
-    border: `2px solid ${COLORS.green}`,
+    // border: `2px solid ${COLORS.green}`,
     marginLeft: isSmallScreen ? 20 : 120,
-    width: isSmallScreen ? 0 : 600,
+    // width: isSmallScreen ? 0 : 600,
     // width: 120,
-    height: "auto", // Maintain aspect ratio
+
+    height: 400, // Maintain aspect ratio
     opacity: isVisible ? 1 : 0,
     transition: "opacity 1s ease-in-out",
     marginLeft: isVisible ? 0 : "100px", // Adjust the initial left position
@@ -74,9 +75,9 @@ export default function HomeRowD() {
         {/* Col A */}
         <div
           style={{
-            width: isSmallScreen ? null : "40%",
+            // width: isSmallScreen ? null : "40%",
             justifyContent: "flex-start",
-            paddingLeft: isSmallScreen ? null : 180,
+            paddingLeft: isSmallScreen ? null : 260,
           }}
         >
           <div
@@ -138,7 +139,7 @@ export default function HomeRowD() {
             }}
             onEnter={handleEnterViewport}
           >
-            <img src="https://i.imgur.com/BwV3fgr.png" style={imageStyle} />
+            <img src="https://i.imgur.com/tQNKmHk.png" style={imageStyle} />
           </ScrollTrigger>
         </div>
       </div>

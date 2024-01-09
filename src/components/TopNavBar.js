@@ -110,7 +110,7 @@ export default function TopNavBar() {
               Home
             </div>
           </Link>
-          <Link to="/comingsoon" style={{ textDecoration: "none" }}>
+          {/* <Link to="/comingsoon" style={{ textDecoration: "none" }}>
             <div style={{ marginLeft: 20, fontSize: 18, color: "white" }}>
               Features
             </div>
@@ -126,7 +126,7 @@ export default function TopNavBar() {
             <div style={{ marginLeft: 20, fontSize: 18, color: "white" }}>
               App
             </div>
-          </Link>
+          </Link> */}
 
           <Link to="/comingsoon" style={{ textDecoration: "none" }}>
             <div style={{ marginLeft: 20, fontSize: 18, color: "white" }}>

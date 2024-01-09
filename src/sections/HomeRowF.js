@@ -66,31 +66,6 @@ export default function HomeRowF() {
           >
             Talk to our team today to find out more
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: isSmallScreen ? "center" : "flex-start",
-            }}
-          >
-            <div
-              style={{
-                backgroundColor: COLORS.purple,
-                color: "white",
-                paddingLeft: 15,
-                paddingRight: 15,
-                paddingTop: 8,
-                paddingBottom: 8,
-                borderRadius: 40,
-                marginTop: 20,
-                fontWeight: "700",
-                display: "inline-block",
-                width: "auto",
-                // float: !isSmallScreen ? "left" : null,
-              }}
-            >
-              SEE HOW UNIS CAN HELP ME
-            </div>
-          </div>
         </div>
 
         {/* Col B */}
@@ -104,8 +79,8 @@ export default function HomeRowF() {
           <div style={{ marginRight: isSmallScreen ? 0 : 60 }}>
             {!isSmallScreen ? (
               <img
-                src="https://i.imgur.com/0ZDTjQd.jpg"
-                style={{ margin: 20, borderRadius: 30 }}
+                src="https://i.imgur.com/CBR1m7R.png"
+                style={{ margin: 20, borderRadius: 30, marginTop: 0 }}
               />
             ) : null}
           </div>

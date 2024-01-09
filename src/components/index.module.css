@@ -125,9 +125,10 @@
 
 .container {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   margin-top: 40px;
   padding-left: 120px;
+  align-items: "center";
 
   /* Default: for larger screens, text on the left, image on the right */
 }

@@ -42,17 +42,17 @@ export default function MobileMenu({ onClick }) {
         <Link to="/" style={{ textDecoration: "none" }}>
           <div style={linkContainer}>Home</div>
         </Link>
-        <Link to="/comingsoon" style={{ textDecoration: "none" }}>
+        {/* <Link to="/comingsoon" style={{ textDecoration: "none" }}>
           <div style={linkContainer}>Features</div>
-        </Link>
+        </Link> */}
 
-        <Link to="/comingsoon" style={{ textDecoration: "none" }}>
+        {/* <Link to="/comingsoon" style={{ textDecoration: "none" }}>
           <div style={linkContainer}>Pricing</div>
-        </Link>
+        </Link> */}
 
-        <Link to="/comingsoon" style={{ textDecoration: "none" }}>
+        {/* <Link to="/comingsoon" style={{ textDecoration: "none" }}>
           <div style={linkContainer}>App</div>
-        </Link>
+        </Link> */}
 
         <Link to="/investors" style={{ textDecoration: "none" }}>
           <div style={linkContainer}>Investors</div>

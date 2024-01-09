@@ -12,20 +12,20 @@ export default function HomeRowB() {
     setIsVisible(true)
   }
 
+  //  Check Small Device Screen Size
+  const [isSmallScreen, setIsSmallScreen] = useState(false)
+
   const imageStyle = {
-    borderRadius: 30,
-    border: `2px solid ${COLORS.green}`,
+    // border: `2px solid ${COLORS.green}`,
+    marginTop: isSmallScreen ? 0 : -120,
     marginLeft: 120,
     width: 600,
-    height: "auto", // Maintain aspect ratio
+    // height: "auto", // Maintain aspect ratio
     opacity: isVisible ? 1 : 0,
     transition: "opacity 1s ease-in-out",
     marginLeft: isVisible ? 0 : "-100px",
     // Adjust the initial left position
   }
-
-  //  Check Small Device Screen Size
-  const [isSmallScreen, setIsSmallScreen] = useState(false)
 
   useEffect(() => {
     // Function to update isSmallScreen state based on window width
@@ -62,6 +62,7 @@ export default function HomeRowB() {
         ONE PLACE
       </div>
 
+      <div style={{ height: 20 }} />
       <div className={styles.container}>
         {/* Col A */}
         <div
@@ -123,7 +124,7 @@ export default function HomeRowB() {
             className={styles.image1}
             onEnter={handleEnterViewport}
           >
-            <img src="https://i.imgur.com/BwV3fgr.png" style={imageStyle} />
+            <img src="https://i.imgur.com/aITPT0z.png" style={imageStyle} />
           </ScrollTrigger>
         </div>
       </div>

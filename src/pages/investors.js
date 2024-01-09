@@ -6,10 +6,15 @@ import COLORS from "../../misc/COLORS"
 import Checkbox from "../components/Checkbox"
 import MobileMenu from "../components/MobileMenu"
 import MobileTopBar from "../components/MobileTopBar"
+import { firestore, auth } from "../../firebase.config"
+import ReCAPTCHA from "react-google-recaptcha"
 
 export default function Investors() {
   const [isTermsChecked, setTermsChecked] = useState(false)
   const [mobMenu, setMobMenu] = useState(false)
+  const [recaptchaValue, setRecaptchaValue] = useState("")
+  const [recaptchaVisible, setRecaptchaVisible] = useState(false)
+  const [thankYou, setThankYou] = useState(false)
 
   const handleTermsCheckboxChange = isChecked => {
     setTermsChecked(isChecked)
@@ -41,25 +46,55 @@ export default function Investors() {
   // Email Form
   const [email, setEmail] = useState("")
 
-  async function sendNote(e) {
+  // const handleSubmit = async e => {
+  //   e.preventDefault()
+
+  //   // Add the email to Firestore
+  //   try {
+  //     await db.collection("investoremails").doc().set({
+  //       email,
+  //     })
+  //     console.log("Email added to Firestore!")
+  //   } catch (error) {
+  //     console.error("Error adding email to Firestore: ", error)
+  //   }
+
+  //   // Clear the input field
+  //   setEmail("")
+  // }
+
+  // Handle Submit
+  const messagesRef = firestore.collection("investorsemails")
+  const handleSubmit = async e => {
     e.preventDefault()
-    console.log("Clicked")
+
+    if (!recaptchaValue) {
+      alert("Please check terms and complete reCAPTCHA before submitting.")
+      return
+    }
 
     try {
-      // Attempt to set the document in Firestore
+      await messagesRef.doc().set({
+        email,
+        recaptcha: recaptchaValue,
+        hello: "Hello",
+      })
 
-      console.log("Success")
-      // If successful, show an alert and clear the email state
-      alert(
-        "Thank you for your interest in UNIS. Look out for your first email"
-      )
+      alert("Email successfully submitted!")
       setEmail("")
+      setRecaptchaValue("")
+      setRecaptchaVisible(false)
+      setThankYou(true)
     } catch (error) {
-      // If an error occurs, log it to the console
-      console.error("Error sending note:", error)
-      // Optionally, you can also show an alert to the user indicating the error
-      alert("An error occurred. Please try again later.")
+      console.error("Error adding email and reCAPTCHA to Firestore: ", error)
+      alert("Error submitting email. Please try again.")
     }
+  }
+
+  // Handle Email Focus
+  const handleEmailFocus = () => {
+    // Show the reCAPTCHA when the user starts typing their email
+    setRecaptchaVisible(true)
   }
 
   return (
@@ -183,7 +218,7 @@ export default function Investors() {
                     justifyContent: "center",
                     marginTop: 15,
                   }}
-                  onSubmit={sendNote}
+                  onSubmit={handleSubmit}
                 >
                   <input
                     type="email"
@@ -191,6 +226,7 @@ export default function Investors() {
                     className={styles.emailinput}
                     value={email}
                     onChange={e => setEmail(e.target.value)}
+                    onFocus={handleEmailFocus}
                   />
                   <button
                     type="submit"
@@ -202,7 +238,20 @@ export default function Investors() {
                 </form>
               </div>
               <div style={{ marginTop: 10, fontSize: 14, fontWeight: "400" }}>
-                <Checkbox onCheck={handleTermsCheckboxChange} />
+                {recaptchaVisible ? (
+                  <div>
+                    <ReCAPTCHA
+                      sitekey="6Lfl_EkpAAAAAEsRUaN1Ho5vTjypUgcrORPXiJGs" // Replace with your actual reCAPTCHA site key
+                      onChange={value => setRecaptchaValue(value)}
+                    />
+                    <Checkbox onCheck={handleTermsCheckboxChange} />
+                  </div>
+                ) : null}
+                {thankYou ? (
+                  <div style={{ color: COLORS.green }}>
+                    Thank you - please look out for your email!
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>
