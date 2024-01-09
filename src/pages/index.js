@@ -135,21 +135,19 @@ const IndexPage = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false)
 
   useEffect(() => {
-    if (typeof window === "undefined") return
-    // Function to update isSmallScreen state based on window width
     const updateWindowDimensions = () => {
-      setIsSmallScreen(window.innerWidth < 768) // You can adjust the threshold (768) based on your design
+      setIsSmallScreen(window.innerWidth < 768)
     }
 
-    // Event listener to update state when the window is resized
-    window.addEventListener("resize", updateWindowDimensions)
+    if (typeof window !== "undefined") {
+      // Only run the following code in the browser
+      window.addEventListener("resize", updateWindowDimensions)
+      updateWindowDimensions()
 
-    // Initial call to set the initial state
-    updateWindowDimensions()
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", updateWindowDimensions)
+      // Cleanup the event listener on component unmount
+      return () => {
+        window.removeEventListener("resize", updateWindowDimensions)
+      }
     }
   }, [])
 
