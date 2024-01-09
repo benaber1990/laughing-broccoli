@@ -10,8 +10,10 @@ import ReCAPTCHA from "react-google-recaptcha"
 import { firestore, auth } from "../../firebase.config"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons"
+import { useMediaQuery } from "react-responsive"
 
 export default function ComingSoon() {
+  const isSmallScreen = useMediaQuery({ maxWidth: 768 })
   const [isTermsChecked, setTermsChecked] = useState(false)
   const [mobMenu, setMobMenu] = useState(false)
   const [recaptchaValue, setRecaptchaValue] = useState("")
@@ -23,24 +25,6 @@ export default function ComingSoon() {
   }
 
   //  Check Small Device Screen Size
-  const [isSmallScreen, setIsSmallScreen] = useState(false)
-
-  useLayoutEffect(() => {
-    const updateWindowDimensions = () => {
-      setIsSmallScreen(window.innerWidth < 768)
-    }
-
-    if (typeof window !== "undefined") {
-      // Only run the following code in the browser
-      window.addEventListener("resize", updateWindowDimensions)
-      updateWindowDimensions()
-
-      // Cleanup the event listener on component unmount
-      return () => {
-        window.removeEventListener("resize", updateWindowDimensions)
-      }
-    }
-  }, [])
 
   const mobMenuHandler = () => setMobMenu(p => !p)
 

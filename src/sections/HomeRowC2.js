@@ -9,6 +9,7 @@ import {
   faBolt,
 } from "@fortawesome/free-solid-svg-icons"
 import * as styles from "../components/index.module.css"
+import { useMediaQuery } from "react-responsive"
 
 const boxComp = {
   marginRight: 20,
@@ -22,30 +23,11 @@ const boxComp = {
 
 export default function HomeRowC2() {
   const [isVisible, setIsVisible] = useState(false)
+  const isSmallScreen = useMediaQuery({ maxWidth: 768 })
 
   const handleEnterViewport = () => {
     setIsVisible(true)
   }
-
-  //  Check Small Device Screen Size
-  const [isSmallScreen, setIsSmallScreen] = useState(false)
-
-  useLayoutEffect(() => {
-    const updateWindowDimensions = () => {
-      setIsSmallScreen(window.innerWidth < 768)
-    }
-
-    if (typeof window !== "undefined") {
-      // Only run the following code in the browser
-      window.addEventListener("resize", updateWindowDimensions)
-      updateWindowDimensions()
-
-      // Cleanup the event listener on component unmount
-      return () => {
-        window.removeEventListener("resize", updateWindowDimensions)
-      }
-    }
-  }, [])
 
   const container = {
     display: "flex",

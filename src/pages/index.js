@@ -22,6 +22,7 @@ import MobileMenu from "../components/MobileMenu"
 import { db } from "../../firebase.config"
 import ReCAPTCHA from "react-google-recaptcha"
 import { firestore, auth } from "../../firebase.config"
+import { useMediaQuery } from "react-responsive"
 
 // import dotenv from "dotenv"
 // dotenv.config()
@@ -95,6 +96,7 @@ const IndexPage = () => {
   const [recaptchaValue, setRecaptchaValue] = useState("")
   const [recaptchaVisible, setRecaptchaVisible] = useState(false)
   const [thankYou, setThankYou] = useState(false)
+  const isSmallScreen = useMediaQuery({ maxWidth: 768 })
 
   // Define the keyframes for the color animation
   // Define the keyframes for the color animation
@@ -130,26 +132,6 @@ const IndexPage = () => {
     animation: ${colorAnimationPurpleToWhite} 8s infinite; /* 8s duration, infinite loop */
     display: inline; /* or display: inline-block; */
   `
-
-  //  Check Small Device Screen Size
-  const [isSmallScreen, setIsSmallScreen] = useState(false)
-
-  useLayoutEffect(() => {
-    const updateWindowDimensions = () => {
-      setIsSmallScreen(window.innerWidth < 768)
-    }
-
-    if (typeof window !== "undefined") {
-      // Only run the following code in the browser
-      window.addEventListener("resize", updateWindowDimensions)
-      updateWindowDimensions()
-
-      // Cleanup the event listener on component unmount
-      return () => {
-        window.removeEventListener("resize", updateWindowDimensions)
-      }
-    }
-  }, [])
 
   //  Mobile Menu Handler
 

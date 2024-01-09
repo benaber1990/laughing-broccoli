@@ -3,6 +3,7 @@ import ScrollTrigger from "react-scroll-trigger"
 import COLORS from "../../misc/COLORS"
 import * as styles from "../components/index.module.css"
 import { Link } from "gatsby"
+import { useMediaQuery } from "react-responsive"
 
 export default function HomeRowC() {
   const [isVisible, setIsVisible] = useState(false)
@@ -11,25 +12,7 @@ export default function HomeRowC() {
     setIsVisible(true)
   }
 
-  //  Check Small Device Screen Size
-  const [isSmallScreen, setIsSmallScreen] = useState(false)
-
-  useLayoutEffect(() => {
-    const updateWindowDimensions = () => {
-      setIsSmallScreen(window.innerWidth < 768)
-    }
-
-    if (typeof window !== "undefined") {
-      // Only run the following code in the browser
-      window.addEventListener("resize", updateWindowDimensions)
-      updateWindowDimensions()
-
-      // Cleanup the event listener on component unmount
-      return () => {
-        window.removeEventListener("resize", updateWindowDimensions)
-      }
-    }
-  }, [])
+  const isSmallScreen = useMediaQuery({ maxWidth: 768 })
 
   const imageStyle = {
     opacity: isVisible ? 1 : 0,

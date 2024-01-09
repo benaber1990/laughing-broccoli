@@ -4,16 +4,15 @@ import COLORS from "../../misc/COLORS"
 import BigButton from "../components/BigButton"
 import * as styles from "../components/index.module.css"
 import { Link } from "gatsby"
+import { useMediaQuery } from "react-responsive"
 
 export default function HomeRowB() {
   const [isVisible, setIsVisible] = useState(false)
+  const isSmallScreen = useMediaQuery({ maxWidth: 768 })
 
   const handleEnterViewport = () => {
     setIsVisible(true)
   }
-
-  //  Check Small Device Screen Size
-  const [isSmallScreen, setIsSmallScreen] = useState(false)
 
   const imageStyle = {
     // border: `2px solid ${COLORS.green}`,
@@ -26,23 +25,6 @@ export default function HomeRowB() {
     marginLeft: isVisible ? 0 : "-100px",
     // Adjust the initial left position
   }
-
-  useLayoutEffect(() => {
-    const updateWindowDimensions = () => {
-      setIsSmallScreen(window.innerWidth < 768)
-    }
-
-    if (typeof window !== "undefined") {
-      // Only run the following code in the browser
-      window.addEventListener("resize", updateWindowDimensions)
-      updateWindowDimensions()
-
-      // Cleanup the event listener on component unmount
-      return () => {
-        window.removeEventListener("resize", updateWindowDimensions)
-      }
-    }
-  }, [])
 
   return (
     <div
