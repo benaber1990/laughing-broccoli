@@ -224,13 +224,8 @@ const IndexPage = () => {
             </div>
             <div style={{ height: 10 }} />
             <div className={styles.sitesubheader}>
-              Get an{" "}
-              <span style={{ fontWeight: "700", color: COLORS.purple }}>
-                <AnimatedTextPurpleToWhite>
-                  AI-Powered
-                </AnimatedTextPurpleToWhite>
-              </span>{" "}
-              app & desktop dashboard {!isSmallScreen ? <br /> : null}
+              Get an AI-Powered app & desktop dashboard{" "}
+              {!isSmallScreen ? <br /> : null}
               for everything from conception to completion
             </div>
 
