@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useLayoutEffect } from "react"
 import Layout from "../components/layout"
 import * as styles from "../components/index.module.css"
 import COLORS from "../../misc/COLORS"
@@ -25,7 +25,7 @@ export default function ComingSoon() {
   //  Check Small Device Screen Size
   const [isSmallScreen, setIsSmallScreen] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const updateWindowDimensions = () => {
       setIsSmallScreen(window.innerWidth < 768)
     }

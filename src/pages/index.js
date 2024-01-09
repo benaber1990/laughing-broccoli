@@ -1,6 +1,6 @@
 // index.js or App.js
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useLayoutEffect } from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import styled, { keyframes } from "styled-components"
@@ -134,7 +134,7 @@ const IndexPage = () => {
   //  Check Small Device Screen Size
   const [isSmallScreen, setIsSmallScreen] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const updateWindowDimensions = () => {
       setIsSmallScreen(window.innerWidth < 768)
     }

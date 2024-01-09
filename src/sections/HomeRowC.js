@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useLayoutEffect } from "react"
 import ScrollTrigger from "react-scroll-trigger"
 import COLORS from "../../misc/COLORS"
 import * as styles from "../components/index.module.css"
@@ -14,7 +14,7 @@ export default function HomeRowC() {
   //  Check Small Device Screen Size
   const [isSmallScreen, setIsSmallScreen] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const updateWindowDimensions = () => {
       setIsSmallScreen(window.innerWidth < 768)
     }

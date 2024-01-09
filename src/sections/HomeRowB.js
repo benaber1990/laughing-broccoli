@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useLayoutEffect } from "react"
 import ScrollTrigger from "react-scroll-trigger"
 import COLORS from "../../misc/COLORS"
 import BigButton from "../components/BigButton"
@@ -27,7 +27,7 @@ export default function HomeRowB() {
     // Adjust the initial left position
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const updateWindowDimensions = () => {
       setIsSmallScreen(window.innerWidth < 768)
     }
